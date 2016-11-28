@@ -1,0 +1,3 @@
+#Remove all multiple blank lines and keep only single newline in all the files of directory recursively start
+find . -type f -exec sed -i '/^$/d' '{}' ';'
+#Remove all multiple blank lines and keep only single newline in all the files of directory recursively end...
