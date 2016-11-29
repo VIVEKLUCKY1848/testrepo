@@ -8,7 +8,7 @@ Mage::app('default');
 try {
 	$default_setup = Mage::getConfig()->getResourceConnectionConfig("default_setup");
 	$dbhost = $default_setup->host;
-	$dbuser = $default_setup->username;;
+	$dbuser = $default_setup->username;
 	$dbpass = $default_setup->password;
 	$dbName = $default_setup->dbname;
 	$connection = new mysqli($dbhost, $dbuser, $dbpass, $dbName);
