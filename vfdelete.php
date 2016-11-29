@@ -17,7 +17,7 @@ try {
 }
 
 if($connection->connect_error) {
-   echo "Error Occurred While Connection To DataBase";
+	echo "Error Occurred While Connection To DataBase";
 }
 
 //SQL statements separated by semi-colons
