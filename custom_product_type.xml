@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<config>
+  <!-- General Module Information -->
+  <modules>
+    <Mycompany_Customproduct>
+      <version>0.1.0</version>
+    </Mycompany_Customproduct>
+  </modules>
+  <adminhtml>
+    <translate>
+      <modules>
+        <Mycompany_Customproduct>
+          <files>
+            <default>Mycompany_Customproduct.csv</default>
+          </files>
+        </Mycompany_Customproduct>
+      </modules>
+    </translate>
+  </adminhtml>
+  <!-- End of general Information -->
+  <global>
+    <!-- WE MUST DEFINE THE MODEL DIRECTORY FOR OUR MODULE -->
+    <models>
+      <customproduct>
+        <class>Mycompany_Customproduct_Model</class>
+      </customproduct>
+    </models>
+    <!--  HERE WE DEFINE THE PRODUCT TYPE, ITS LABEL, AND ANY MODELS IT USES
+         NOTICE THAT I AM DECLARING A PRODUCT PRICE, MOST PRODUCT TYPES I'D ASSUME WOULD HAVE A
+         CUSTOM PRICING STRUCTURE.  YOU COULD LEAVE THAT LINE OUT IF YOU WISH. -->
+    <catalog>
+      <product>
+        <type>
+          <paper translate="label" module="customproduct">
+            <label>Paper Type</label>
+            <model>customproduct/product_type_paper</model>
+            <price_model>customproduct/product_price</price_model>
+            <!-- OPTIONAL -->
+            <is_qty>1</is_qty>
+          </paper>
+        </type>
+      </product>
+    </catalog>
+    <!-- HELPER CLASS IS NEEDED, OR MAGENTO WILL COMPLAIN -->
+    <helpers>
+      <customproduct>
+        <class>Mycompany_Customproduct_Helper</class>
+      </customproduct>
+    </helpers>
+  </global>
+</config>
