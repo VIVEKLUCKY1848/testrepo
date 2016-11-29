@@ -50,5 +50,5 @@ if($sqlResult == true) {
 	header( "refresh:2;url=$base_url" );
 }
 else {
-   echo 'Error occurred executing statements.';
+	echo 'Error occurred executing statements.';
 }
