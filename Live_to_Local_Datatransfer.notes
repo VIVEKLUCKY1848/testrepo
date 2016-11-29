@@ -1,0 +1,26 @@
+Imposting Live database into LocalDev when theme and some CMS Blocks and Pages are changed
+
+Step 1:
+After taking backup of both Live and Dev sites, import Live site's DB into Dev site.
+
+Step 2:
+Then clear 'log' tables as they can create issue during running Live DB configured with Local Dev.
+
+As below:
+TRUNCATE TABLE log_customer;
+TRUNCATE TABLE log_visitor;
+TRUNCATE TABLE log_visitor_info;
+TRUNCATE TABLE log_url;
+TRUNCATE TABLE log_url_info;
+TRUNCATE TABLE log_quote;
+-- TRUNCATE TABLE report_viewed_product_index;
+-- TRUNCATE TABLE report_compared_product_index;
+-- TRUNCATE TABLE report_event;
+-- TRUNCATE TABLE catalog_compare_item;
+
+Step 3:
+Then apply theme settings already did before in the Dev DB, to Live DB.
+
+SELECT * FROM `cms_block_store` WHERE `cms_block_store`.`block_id` IN (SELECT `block_id` FROM `cms_block` WHERE `identifier` LIKE 'block_%' AND `is_active` = 1);
+
+UPDATE `cms_block_store` SET `store_id` = 0 WHERE `cms_block_store`.`block_id` IN (SELECT `block_id` FROM `cms_block` WHERE `identifier` LIKE 'block_%' AND `is_active` = 1);
