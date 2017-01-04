@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <div class="module module-home-video"><div id="video"></div></div>
+        <script type="application/javascript" 
+                src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script type="application/javascript" src="https://www.youtube.com/iframe_api"></script>
+        <script type="application/javascript">
+        /*
+        onStateChange This event fires whenever the player's state changes. The data property of the event object that the API passes to your event listener function will specify an integer that corresponds to the new player state. Possible data values are:
+
+        -1 (unstarted)
+        0 (ended)
+        1 (playing)
+        2 (paused)
+        3 (buffering)
+        5 (video cued).
+
+        When the player first loads a video, it will broadcast an unstarted (-1) event. When a video is cued and ready to play, the player will broadcast a video cued (5) event. In your code, you can specify the integer values or you can use one of the following namespaced variables:
+
+        YT.PlayerState.ENDED
+        YT.PlayerState.PLAYING
+        YT.PlayerState.PAUSED
+        YT.PlayerState.BUFFERING
+        YT.PlayerState.CUED
+        */
+        var player;
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('video', {
+                height: '390',
+                width: '640',
+                videoId: 'RWeFOe2Cs4k',
+                playerVars: {'autoplay':0,'loop':1},
+                events: {
+                    //'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+        }
+        function onPlayerReady(event) {
+            event.target.playVideo();
+        }
+        function onPlayerStateChange(event) {
+            if(event.data == YT.PlayerState.PLAYING) {
+                //alert('playing....');
+                $('iframe[src*="youtube.com"]').animate({"width":"960px","height":"585px"}, 550);
+            } 
+            if(event.data == YT.PlayerState.PAUSED) {
+                //alert('paused....');
+                $('iframe[src*="youtube.com"]').animate({"width":"640px","height":"390px"}, 550);
+            }
+        }
+        </script>
+    </body>
+</html>
